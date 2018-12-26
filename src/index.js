@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import './index.css';
 import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router';
 import Page from './components/Page';
 import Dashboard from './components/dashboard/Dashboard';

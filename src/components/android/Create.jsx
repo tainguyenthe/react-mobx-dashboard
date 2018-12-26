@@ -6,6 +6,7 @@ const FormItem = Form.Item;
 
 const suggestions = ['iOS','Android','Symbian','WindowsPhone','BlackBerry','Other'];
 let modalKey = 0;
+
 class CreateForm extends React.Component {
     constructor(props) {
         super(props);

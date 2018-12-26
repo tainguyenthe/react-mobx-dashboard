@@ -20,7 +20,7 @@ const routes =
             </Route>
             <Route path={'dashboard/index'} component={Dashboard} />
         </Route>
-    </Route>;
+    </Route>
 
 ReactDOM.render(
   <Router history={hashHistory}>

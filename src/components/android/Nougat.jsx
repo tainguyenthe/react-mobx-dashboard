@@ -11,6 +11,7 @@ import DetailModal from './DetailModal';
 import NougatStore from '../../mobx/android/Nougat';
 import Mock from 'mockjs';
 import $ from "jquery";
+
 const store = new NougatStore();
 let { getDataSource } = store;
 const Random = Mock.Random;

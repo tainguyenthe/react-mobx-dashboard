@@ -1,21 +1,36 @@
 import React, { Component } from 'react';
 import { Menu, Icon, Layout, Badge } from 'antd';
-const { Header } = Layout;
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
 import screenfull from 'screenfull';
 import avater from '../style/imgs/paratrooper.jpg';
 
+const { Header } = Layout;
+const MenuItem = Menu.Item;
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 class HeaderCustom extends Component {
     state = {
-        user: 'kim'
+        user: 'kim',
+        current: 'full'
     };
+    
     screenFull = () => {
         if (screenfull.enabled) {
             screenfull.request();
         }
     };
+
+    handleClickOnMenu = (e) => {
+        console.log('click', e);
+        this.setState({
+            current: e.key
+        })
+        if(e.key === 'logout'){
+            // localStorage.clear();
+            window.location.href = '/';
+        }
+    }
+
     render() {
         return (
             <Header style={{ background: '#fff', padding: 0, height: 65 }} className="custom-theme" >
@@ -27,23 +42,25 @@ class HeaderCustom extends Component {
                 <Menu
                     mode="horizontal"
                     style={{ lineHeight: '64px', float: 'right' }}
+                    onClick={this.handleClickOnMenu}
                 >
-                    <Menu.Item key="full" onClick={this.screenFull} >
+                    <MenuItem key="full" onClick={this.screenFull} >
                         <Icon type="arrows-alt" onClick={this.screenFull} />
-                    </Menu.Item>
-                    <Menu.Item key="1">
+                    </MenuItem>
+                    <MenuItem key="notification">
                         <Badge count={25} overflowCount={10} style={{marginLeft: 10}}>
                             <Icon type="mail" />
                         </Badge>
-                    </Menu.Item>
+                    </MenuItem>
+
                     <SubMenu title={<span className="avatar"><img src={avater} alt="avater" /><i className="on bottom b-white" /></span>}>
                         <MenuItemGroup title="UserCenter">
-                            <Menu.Item key="setting:1">Hi - {this.state.user}</Menu.Item>
-                            <Menu.Item key="setting:2">Profile</Menu.Item>
+                            <MenuItem key="username">Hi - {this.state.user}</MenuItem>
+                            <MenuItem key="profile">Profile</MenuItem>
                         </MenuItemGroup>
                         <MenuItemGroup title="Settings">
-                            <Menu.Item key="setting:3">Setting</Menu.Item>
-                            <Menu.Item key="setting:4">Exit</Menu.Item>
+                            <MenuItem key="setting">Setting</MenuItem>
+                            <MenuItem key="logout">Logout</MenuItem>
                         </MenuItemGroup>
                     </SubMenu>
                 </Menu>

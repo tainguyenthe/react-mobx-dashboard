@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Layout, Icon } from 'antd';
-const { Content, Footer } = Layout;
 import './style/index.less';
+
 import SiderCustom from './components/SiderCustom';
 import HeaderCustom from './components/HeaderCustom';
+
+const { Content, Footer } = Layout;
 
 class App extends Component {
     state = {
@@ -18,6 +20,7 @@ class App extends Component {
         return (
             <Layout className="ant-layout-has-sider">
               <SiderCustom path={this.props.location.pathname} collapsed={this.state.collapsed} />
+              
               <Layout>
                 <HeaderCustom toggle={this.toggle} />
                 <Content style={{ margin: '0 16px', overflow: 'initial' }}>

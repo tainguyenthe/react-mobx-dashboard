@@ -1,4 +1,4 @@
-// 获取url的参数
+// Get parameter on URL
 export const queryString = () => {
     let _queryString = {};
     const _query = window.location.search.substr(1);
@@ -17,7 +17,7 @@ export const queryString = () => {
     return _queryString;
 };
 
-// build参数
+// Build parameter
 export const buildQueryString = (data) => {
     let ret = [];
     for (let d in data) {

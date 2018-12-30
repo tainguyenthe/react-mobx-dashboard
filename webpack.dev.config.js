@@ -5,6 +5,8 @@ var htmlWebpackPlugin = require("html-webpack-plugin");
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 var WatchMissingNodeModulesPlugin = require("react-dev-utils/WatchMissingNodeModulesPlugin");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 var publicPath = "/";
 var port = 3007;
 process.env.NODE_ENV = "development";
@@ -39,6 +41,12 @@ module.exports = {
         modules: [path.resolve(__dirname, 'node_modules')],
     },
     module: {
+        loaders:[
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract('css-loader!sass-loader')
+            }
+        ],
         rules: [
             {
                 test: /\.(js|jsx)$/,
@@ -106,6 +114,20 @@ module.exports = {
                 ]
             },
             {
+                test: /\.scss$/,
+                use: [
+                  {
+                    loader: "style-loader" // creates style nodes from JS strings
+                  },
+                  {
+                    loader: "css-loader" // translates CSS into CommonJS
+                  },
+                  {
+                    loader: "sass-loader" // compiles Sass to CSS
+                  }
+                ]
+            },
+            {
                 test: /\.css$/,
                 use: [
                     {
@@ -132,6 +154,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new ExtractTextPlugin('src/App.css'),
         new htmlWebpackPlugin({
             filename: "index.html",
             template: path.resolve(__dirname,"public/index.html"),

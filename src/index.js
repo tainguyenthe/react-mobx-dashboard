@@ -5,7 +5,6 @@ import {
     Router,
     Route,
     hashHistory,
-    IndexRedirect,
     IndexRoute
 } from "react-router";
 import Page from "./components/Page";
@@ -25,13 +24,13 @@ const routes = (
         <Route path={"/forgot"} component={Forgot} />
         {/* When the user to logon */}
         <Route path={"app"} component={App}>
+            <Route path={"dashboard/index"} component={Dashboard} />
             <Route path={"android"}>
                 <Route path={"nougat"} component={Nougat} />
             </Route>
             <Route path={"ios"}>
                 <Route path={"iphone"} component={Iphone} />
             </Route>
-            <Route path={"dashboard/index"} component={Dashboard} />
         </Route>
     </Route>
 );

@@ -9,10 +9,13 @@ const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 class HeaderCustom extends Component {
-    state = {
-        user: 'kim',
-        current: 'full'
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: 'Tai',
+            current: 'full'
+        }
+    }
     
     screenFull = () => {
         if (screenfull.enabled) {
@@ -21,12 +24,11 @@ class HeaderCustom extends Component {
     };
 
     handleClickOnMenu = (e) => {
-        console.log('click', e);
         this.setState({
             current: e.key
         })
         if(e.key === 'logout'){
-            // localStorage.clear();
+            localStorage.clear();
             window.location.href = '/';
         }
     }

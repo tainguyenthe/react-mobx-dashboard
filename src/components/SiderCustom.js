@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 import { Layout, Menu, Icon } from "antd";
-const { Sider } = Layout;
-const SubMenu = Menu.SubMenu;
 import { Link } from "react-router";
 
+const { Sider } = Layout;
+const MenuItem = Menu.Item;
+const SubMenu = Menu.SubMenu;
+
 class SiderCustom extends Component {
-    state = {
-        collapsed: false,
-        mode: "inline",
-        selectedKey: ""
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            collapsed: false,
+            mode: "inline",
+            selectedKey: ""
+        };
+    }
     componentDidMount() {
         const _path = this.props.path;
         this.setState({
@@ -49,12 +54,12 @@ class SiderCustom extends Component {
                     selectedKeys={[this.state.selectedKey]}
                     defaultOpenKeys={["/app/android", "/app/ios"]}
                 >
-                    <Menu.Item key="/app/dashboard/index">
+                    <MenuItem key="/app/dashboard/index">
                         <Link to={"/app/dashboard/index"}>
                             <Icon type="mobile" />
                             <span className="nav-text">Home</span>
                         </Link>
-                    </Menu.Item>
+                    </MenuItem>
                     <SubMenu
                         key="/app/android"
                         title={
@@ -64,9 +69,9 @@ class SiderCustom extends Component {
                             </span>
                         }
                     >
-                        <Menu.Item key="/app/android/nougat">
+                        <MenuItem key="/app/android/nougat">
                             <Link to={"/app/android/nougat"}>nougat</Link>
-                        </Menu.Item>
+                        </MenuItem>
                     </SubMenu>
                     <SubMenu
                         key="/app/ios"
@@ -77,9 +82,9 @@ class SiderCustom extends Component {
                             </span>
                         }
                     >
-                        <Menu.Item key="/app/ios/iphone">
+                        <MenuItem key="/app/ios/iphone">
                             <Link to={"/app/ios/iphone"}>iPhone</Link>
-                        </Menu.Item>
+                        </MenuItem>
                     </SubMenu>
                 </Menu>
                 <style>
